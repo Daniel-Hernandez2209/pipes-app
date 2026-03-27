@@ -1,0 +1,12 @@
+<header class="w-full bg-base-200 border-b border-base-300 shadow-sm">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <span class="text-xl font-bold">🚥 THEMES</span>
+      <span class="badge badge-secondary font-semibold">{{ temaActual() }}</span>
+    </div>
+
+    <button (click)="cambiarTema()" class="btn btn-primary btn-sm">
+      {{ temaActual() === 'corporate' ? '🌙 Tema Oscuro' : '☀️ Tema Claro' }}
+    </button>
+  </div>
+</header>
