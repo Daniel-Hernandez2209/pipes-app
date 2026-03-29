@@ -1,0 +1,9 @@
+<ul
+  class="flex gap-4 text-lg font-medium text-base-content transition-colors duration-300 border-b border-base-300 pb-2 menu menu-horizontal"
+>
+  @for (routes of route; track routes.path) {
+    <li>
+      <a [routerLink]="routes.path" routerLinkActive="text-accent"> {{ routes.title }}</a>
+    </li>
+  }
+</ul>
