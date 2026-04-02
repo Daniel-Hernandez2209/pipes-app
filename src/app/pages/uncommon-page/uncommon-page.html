@@ -4,6 +4,12 @@
 </section>
 <section class="max-w-8xl mx-auto px-4 md:px-8">
   <div class="grid grid-col-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
-    <app-card title="i18nSelectPipe"> Hola mundo desde el padre </app-card>
+    <app-card title="i18nSelectPipe">
+      <p>
+        Saludos {{ client().name }} es un gusto {{ client().gender | i18nSelect: invitationMap }} a
+        nuestra plataforma
+      </p>
+      <button (click)="changeCliente()" class="btn btn-primary">Cambiar Cliente</button>
+    </app-card>
   </div>
 </section>
