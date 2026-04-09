@@ -1,2 +1,4 @@
-@import 'tailwindcss/index.css'; /* 👈 Agrégale el /index.css */
-@plugin "daisyui";
+@import 'tailwindcss';
+@plugin "daisyui" {
+  themes: corporate, business;
+}
