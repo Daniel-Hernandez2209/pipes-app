@@ -1,1 +1,86 @@
-<p>custom-page works!</p>,
+<section class="mx-5 my-10 text-center">
+  <h1 class="text-2xl font-bold">pipes personalizados</h1>
+  <h3 class="text-lg text-base-content/70">pipes creados por el usuario</h3>
+</section>
+
+<section class="max-w-8xl mx-auto px-4 md:px-8">
+  <div class="stats shadow">
+    <div class="stat">
+      <div class="stat-title">Toggle Pipe Case</div>
+      <div class="stat-value">{{ name() | toggleCase: upper() }}</div>
+    </div>
+    <button class="btn btn-primary h-auto" (click)="upper.set(!upper())">
+      cambiar a {{ upper() === true ? 'lowercase' : 'UPPERCASE' }}
+    </button>
+  </div>
+  <section class="max-w-8xl mx-auto px-4 md:px-8 mt-5">
+    <h1>Lista de Héroes con pipes personalizados</h1>
+    <div class="flex gap-2 justify-end w-full mt-5">
+      <input
+        type="text"
+        placeholder="Buscar héroe..."
+        class="input input-bordered w-full max-w-xs"
+        (input)="search.set(txtsearch.value)"
+        #txtsearch
+      />
+      <div class="flex flex-1"></div>
+      <button (click)="surfby.set('name')" class="btn btn-primary">por nombre</button>
+      <button (click)="surfby.set('canFly')" class="btn btn-accent">por volar</button>
+      <button (click)="surfby.set('color')" class="btn btn-secondary">por color</button>
+      <button (click)="surfby.set('creator')" class="btn btn-info">por creador</button>
+    </div>
+  </section>
+
+  <div class="overflow-x-auto w-full mt-10">
+    <table class="table table-xs w-full">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Nombre</th>
+          <th>Puede volar</th>
+          <th>Color</th>
+          <th>Creador</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (
+          hero of heros() | heroFilterPipe: search() | heroSorBYfPipe: surfby();
+          track hero.id
+        ) {
+          <tr>
+            <th>{{ hero.id }}</th>
+            <td>{{ hero.name }}</td>
+            <td>
+              <span class="" [class.text-success]="hero.canFly" [class.text-error]="!hero.canFly">
+                {{ hero.canFly | canFlyPipe }}
+              </span>
+            </td>
+            <td>
+              <span class="badge badge-ghost" [style.color]="hero.color | textColorPipe">
+                {{ hero.color | colorPipe }}
+              </span>
+            </td>
+            <td>
+              <span
+                class="badge badge-ghost"
+                [class.text-primary]="hero.creator === 0"
+                [class.text-warning]="hero.creator === 1"
+              >
+                {{ hero.creator | creatorpipe }}
+              </span>
+            </td>
+          </tr>
+        }
+      </tbody>
+      <tfoot>
+        <tr>
+          <th></th>
+          <th>Nombre</th>
+          <th>Puede volar</th>
+          <th>Color</th>
+          <th>Creador</th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</section>

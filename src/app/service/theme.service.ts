@@ -12,6 +12,7 @@ export class ThemeService {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) {
       this.currentTheme.set(savedTheme);
+      console.log(`Tema cargado desde localStorage: ${savedTheme}`);
     }
 
     // 3. Effect: Cada vez que el signal cambia, actualiza el HTML y el localStorage automáticamente
@@ -19,11 +20,13 @@ export class ThemeService {
       const theme = this.currentTheme();
       document.documentElement.setAttribute('data-theme', theme);
       localStorage.setItem('theme', theme);
+      console.log(`Tema actualizado a: ${theme}`);
     });
   }
 
   // 4. Método para alternar entre dos temas
   toggleTheme() {
     this.currentTheme.update((theme) => (theme === 'business' ? 'corporate' : 'business'));
+    console;
   }
 }
